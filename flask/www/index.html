@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+<!--Javascript om de communicatie tussen HTML en python te maken -->  
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+  
+<script>
+//Deze functie krijgt een waarde van de drukknop hierboven en geeft deze waarde door aan de route led in onze python server
+//inhoud wordt geplaatst in div tag led 
+function buttonvalue(nummer)
+{
+  $( "#led" ).load("/led", { "getal": nummer });
+}
+//Deze functie krijgt een waarde van onze python server (return value uit onze route tijd) 
+//inhoud wordt geplaatst in div tag teller
+window.setInterval(function(){
+  $( "#teller" ).load("/tijd");
+},1000);
+</script>
+
+
+  <title>textured_blue</title>
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+  <link rel="stylesheet" type="text/css" href="style/style.css" title="style" />
+</head>
+
+<body>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <!-- class="logo_colour", allows you to change the colour of the text -->
+          <h1><a href="index.html">Flask Server<span class="logo_colour"></span></a></h1>
+          <h2>Smets T.</h2>
+        </div>
+      </div>
+      <div id="menubar">
+        <ul id="menu">
+          <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
+          <li class="selected"><a href="index.html">Home</a></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+    </div>
+    <div id="site_content">
+      <div class="sidebar">
+        <!-- insert your sidebar items here -->
+        <h3>&nbsp;</h3>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+      </div>
+      <div id="content">
+        <h1>LED</h1>
+
+  <!-- tussen deze div tag komt het resultaat van de return uit python LED - led aan/uit --->
+  <div id="led"></div>
+
+ <!-- bij het drukken op de button wordt de value "1" meegegeven naar de javascript code -->
+	<button onclick="buttonvalue(1)">Start/Stop</button>
+
+	<!-- tussen deze div tag komt het resultaat van de return uit python teller - aantal seconden led aan - -->
+	<div id="teller"></div>
+
+      </div>
+    </div>
+
+
+    <div id="footer">
+      Copyright Smets T.
+    </div>
+  </div>
+</body>
+</html>
+
