@@ -1,7 +1,7 @@
 import serial
 import os
 import threading                      # Importeer de threading-module
-serialport = serial.Serial('/dev/serial0', 9600, timeout=0.5)
+serialport = serial.Serial(port='/dev/serial0' , baudrate=9600, timeout=0, parity=serial.PARITY_EVEN, stopbits=1)
 
 def safe_exit(signum, frame):
     exit(1)
@@ -13,10 +13,10 @@ def lezen():
 		if response:
 			test = response.decode('utf-8')
 			print(test)
-			print("eee")
+
 
 os.system('clear')
-# Start een nieuwe thread voor de led1_blink functie
+# Start een nieuwe thread voor de led1_blink functieAT
 led1_thread = threading.Thread(target=lezen)
 led1_thread.daemon = True         # Maakt de thread daemon, thread stopt als hoofdprogramma stopt
 led1_thread.start()               # Start de thread

@@ -16,7 +16,7 @@ def send_data(data):
 # Function to receive data from HC-05
 def receive_data():
 	if ser.in_waiting > 0:  # If there is incoming data from HC-05
-		#data = ser.readline().decode('utf-8').strip()  # Read and decode the data
+		data = ser.readline().decode('utf-8').strip()  # Read and decode the data
 		return data
 	return None
 
